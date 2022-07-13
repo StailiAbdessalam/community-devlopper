@@ -1,8 +1,11 @@
 
-const PostCard = () => {
+const PostCard = ({post}:any) => {
   return (
-    <div>PostCard</div>
-  )
+    <>
+      <div>{post.title}</div>
+      <div>{post.excerpt}</div>
+    </>
+  );
 }
 
 export default PostCard
