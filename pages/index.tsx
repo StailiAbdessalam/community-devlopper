@@ -1,4 +1,4 @@
-import React from "react";
+import { PostCard, Categories, POstWindget } from "../Components";
 import Head from "next/head";
 const index = () => {
   const posts = [
@@ -15,15 +15,15 @@ const index = () => {
           {posts.map((post: any, index) => {
             return (
               <div>
-                {post.title}
-                {post.excerpt}
+                <PostCard post={post} key={post.title} />
               </div>
             );
           })}
         </div>
         <div className="lg:col-span-4 col-span-1">
           <div className="lg:sticky relative top-8">
-            
+            <POstWindget/>
+            <Categories/>
           </div>
         </div>
       </div>
