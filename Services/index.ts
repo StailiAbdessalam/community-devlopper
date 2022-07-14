@@ -3,7 +3,7 @@ import { request, gql } from 'graphql-request'
 const graphqlAPI: any = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
 export const getPosts = async () => {
-    const query = gql`
+  const query = gql`
        query MyQuery {
             postsConnection {
                 edges {
@@ -32,14 +32,14 @@ export const getPosts = async () => {
             }
             }
     `;
-    const results = await request(graphqlAPI, query);
-    return results.postsConnection.edges;
+  const results = await request(graphqlAPI, query);
+  return results.postsConnection.edges;
 }
 
 
 
 export const getRecentPosts = async () => {
-    const query = gql`
+  const query = gql`
     query GetPostDetails {
          posts(orderBy: createdAt_ASC, last: 3) {
           title
@@ -51,14 +51,14 @@ export const getRecentPosts = async () => {
   }
     }
   `;
-    const result = await request(graphqlAPI, query);
+  const result = await request(graphqlAPI, query);
 
-    return result.posts;
+  return result.posts;
 };
 
 
 export const getSimilarPosts = async (categories: any, slug: any) => {
-    const query = gql`
+  const query = gql`
       query GetPostDetails($slug: String!, $categories: [String!]) {
         posts(
           where: {slug_not: $slug, AND: {categories_some: {slug_in: $categories}}}
@@ -73,7 +73,64 @@ export const getSimilarPosts = async (categories: any, slug: any) => {
         }
       }
     `;
-    const result = await request(graphqlAPI, query, { slug, categories });
+  const result = await request(graphqlAPI, query, { slug, categories });
 
-    return result.posts;
+  return result.posts;
 };
+
+
+
+export const getCategories = async () => {
+  const query = gql`
+  query GetCategories{
+    categories{
+      name
+      slug
+    }  
+}`
+  const result = await request(graphqlAPI, query);
+  return result.categories;
+
+
+}
+
+
+
+
+
+export const getPostDetails = async (slug:any) => {
+  const query = gql`
+    
+    query GetPostDetails {
+  post(where: {slug: ""}) {
+    title
+    exercpt
+    featuredImages {
+      url
+    }
+    author {
+      name
+      bio
+      photo {
+        url
+      }
+      createdAt
+    }
+    content {
+      raw
+    }
+    slug
+    categories {
+      name
+      slug
+    }
+  }
+}
+
+  `;
+
+  const result = await request(graphqlAPI, query, { slug });
+
+  return result.post;
+};
+
