@@ -1,37 +1,33 @@
-import { PostCard, Categories, POstWindget } from "../Components";
+import { PostCard, Categories, PostWidget } from "../Components";
+import { getPosts } from "../Services";
 import Head from "next/head";
-import { getPosts } from "../Services/index";
-const index = ({ posts }:any) => {
-  // console.log(posts);
-  
+export default function Home({ posts }: any) {
   return (
     <div className="container mx-auto px-10 mb-8">
       <Head>
-        <title>CREATE Next App</title>
+        <title>Restaurant Benjy</title>
       </Head>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="lg:col-span-8 col-span-1">
-          {posts?.map((post: any) => (
-          <PostCard key={post.title}  post={post} />
+          {posts.map((post: any, index: any) => (
+            <PostCard key={index} post={post.node} />
           ))}
         </div>
         <div className="lg:col-span-4 col-span-1">
           <div className="lg:sticky relative top-8">
-            <POstWindget />
+            <PostWidget />
             <Categories />
           </div>
         </div>
       </div>
     </div>
   );
-};
+}
 
-export async function getStatitProps() {
+// Fetch data at build time
+export async function getStaticProps() {
   const posts = (await getPosts()) || [];
-  console.log(posts);
   return {
     props: { posts },
   };
 }
-
-export default index;
