@@ -98,11 +98,10 @@ export const getCategories = async () => {
 
 
 
-export const getPostDetails = async (slug:any) => {
+export const getPostDetails = async (slug: any) => {
   const query = gql`
-    
-    query GetPostDetails {
-  post(where: {slug: ""}) {
+ query GetPostDetails($slug : String!) {
+      post(where: {slug: $slug}) {
     title
     exercpt
     featuredImages {
@@ -126,10 +125,9 @@ export const getPostDetails = async (slug:any) => {
     }
   }
 }
-
-  `;
-
-  const result = await request(graphqlAPI, query, { slug });
+`;
+  const result = await request(graphqlAPI, query, {slug});
+  console.log(result);
 
   return result.post;
 };
