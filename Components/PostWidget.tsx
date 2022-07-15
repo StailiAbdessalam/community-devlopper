@@ -15,7 +15,6 @@ const PostWidget = ({ categories, slug }: any) => {
       });
     }
   }, [slug]);
-  console.log(relatedPosts);
 
   return (
     <div className="bg-white shadow-lg rounded-lg mb-8 p-8 ">

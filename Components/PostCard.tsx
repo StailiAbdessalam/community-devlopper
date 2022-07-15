@@ -2,7 +2,6 @@ import Link from "next/link";
 import moment from "moment";
 import Image from 'next/image';
 const PostCard = ({ post }: any) => {
-  console.log(post);
   return (
     <div className="bg-white shadow-lg rounded-lg p-4 lg:p-5 pb-12 mb-8">
 

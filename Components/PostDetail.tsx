@@ -2,7 +2,6 @@ import React from "react";
 import moment from "moment";
 import Image from "next/image";
 const PostDetail = ({ post }: any) => {
-  console.log(post.content.raw);
 
   const getContentFragment = (index:any, text:any, obj:any, type:any) => {
 

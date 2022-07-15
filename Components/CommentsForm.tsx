@@ -39,6 +39,7 @@ const CommentsForm = ({ slug }: any) => {
       window.localStorage.removeItem("email");
     }
     submitComment(commentObj).then((res) => {
+     
       setShowSuccessMessage(true);
       setTimeout(() => {
         setShowSuccessMessage(false);
