@@ -1,5 +1,6 @@
 import { PostCard, Categories, PostWidget } from "../Components";
 import { getPosts } from "../Services";
+import  {FeaturedPosts} from '../sections';
 import Head from "next/head";
 export default function Home({ posts }: any) {
   return (
@@ -7,6 +8,7 @@ export default function Home({ posts }: any) {
       <Head>
         <title>Restaurant Benjy</title>
       </Head>
+      <FeaturedPosts/>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="lg:col-span-8 col-span-1">
           {posts.map((post: any, index: any) => (
